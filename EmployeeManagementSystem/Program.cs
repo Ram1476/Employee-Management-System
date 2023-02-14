@@ -22,11 +22,10 @@ namespace EmpSystem
 
             Console.Write("\nEnter the Number Corresponding to the function you Want to execute:");
 
-
+            user_Choice = Console.ReadLine();
 
             while (user_Choice.ToUpper() != "QUIT")
             {
-                user_Choice = Console.ReadLine();
 
                 switch (user_Choice)
                 {
@@ -36,11 +35,20 @@ namespace EmpSystem
                     case "2":
                         user1.Update_Employee(ref employee);
                         break;
+                    case "3":
+                        user1.Delete_Employee(ref employee);
+                        
+                        break;
+                    case "4":
+                        user1.ViewAll_Employee(ref employee);
+                        break;
+                    case "5":
+                        user1.view_Employee(ref employee);
+                        break;
                     default:
                         Console.WriteLine("Enter a Valid Input To Continue:");
                         break;
-                        //case "3":
-                        //    user
+                        
 
                 }
                 Console.Write("\nEnter the Value for the next function if u want to continue or Enter \'Quit\' to End this Session: ");

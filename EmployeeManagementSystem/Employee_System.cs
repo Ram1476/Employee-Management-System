@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace EmpSystem
 
         public Employee_System Create_Employee()
         {
-            Console.Write("Enter The Number of Employee Details You Want to Enter: ");
+            Console.Write("\nEnter The Number of Employee Details You Want to Enter: ");
             int Count = int.Parse(Console.ReadLine());
             Employee_System employee = new Employee_System();
 
@@ -81,21 +82,85 @@ namespace EmpSystem
             }
             if (isDataupdated)
             {
-                Console.WriteLine("\n******************");
-                Console.WriteLine("\n Your Preferred Employee Details Is Been updated\nThank You using the Employee Management System");
-                Console.WriteLine("\n******************");
+                Console.WriteLine("\n******************************");
+                Console.WriteLine("\n Your Preferred Employee Details Is Been updated\n\nThank You using the Employee Management System");
+                Console.WriteLine("\n******************************");
             }
             else
             {
-                Console.WriteLine("Enter a Valid Employee detail");
+                Console.WriteLine("\nEnter a Valid Employee detail");
             }
         }
 
         public void view_Employee(ref ArrayList employeeList)
         {
+            bool isDataupdated = false;
+            Employee_System employee = new Employee_System();
+            Console.Write("\nEnter the Employee_ID Your Want to Update: ");
+            int Employee_Id = int.Parse(Console.ReadLine()); 
+            foreach (Employee_System emp in employeeList) 
+            {
+                if (emp.employee_Id == Employee_Id) 
+                {
+                    Console.WriteLine($"Employee ID :{emp.employee_Id}");
+                    Console.WriteLine($"Employee Name:{emp.employee_Name}");
+                    Console.WriteLine($"Employee DOB:{emp.employee_DOB}");
+                    Console.WriteLine($"Employee Salary:{emp.employee_Salary}");
+                    Console.WriteLine($"Employee Active-Status:{emp.employee_Active_Status}");
+                    isDataupdated = true;
+                }
+                break;
 
+            }
+            if (isDataupdated)
+            {
+
+                Console.WriteLine("\nYour Employee Details Displayed Successfully");
+            }
+            else 
+            {
+                Console.WriteLine("\nEmployee_Id you have entered Does not Exist");
+            }
         }
 
+        public void Delete_Employee(ref ArrayList employeeList) 
+        {
+            bool isDataDeleted = false;
+            Employee_System employee = new Employee_System();
+            Console.Write("\nEnter the Employee_ID Your Want to Delete: ");
+            int Employee_Id = int.Parse(Console.ReadLine());
+
+            foreach(Employee_System emp in employeeList) 
+            {
+                if (emp.employee_Id == Employee_Id) 
+                {
+                    isDataDeleted= true;
+                    employeeList.Remove(emp);
+                    break;
+                }   
+            }
+            if (!isDataDeleted) 
+            {
+                Console.WriteLine("\n******** Your Preferred Employee_Id has Been Deleted Successfully ********");
+            }
+            else 
+            {
+                Console.WriteLine("Employee Info Does not exist ");
+            }
+        }
+
+        public void ViewAll_Employee(ref ArrayList employeeList) 
+        {
+            foreach (Employee_System emp in employeeList) 
+            {
+                Console.WriteLine($"Employee ID :{emp.employee_Id}");
+                Console.WriteLine($"Employee Name:{emp.employee_Name}");
+                Console.WriteLine($"Employee DOB:{emp.employee_DOB}");
+                Console.WriteLine($"Employee Salary:{emp.employee_Salary}");
+                Console.WriteLine($"Employee Active-Status:{emp.employee_Active_Status}");
+                Console.WriteLine("\n");
+            }
+        }
 
     }
 }
