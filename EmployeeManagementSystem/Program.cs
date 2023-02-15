@@ -12,12 +12,12 @@ namespace EmpSystem
         static void Main(string[] args)
         {
             Employee_System user1 = new Employee_System();
-            string user_Choice = "";
+            string user_Choice;
             ArrayList employee = new ArrayList();
             Console.WriteLine("****** Welcome to the Employee Management System ******");
             Console.WriteLine("\n******************************");
 
-            Console.WriteLine("\n1.To Create New Employee Data\n2.To Update Employee Data\n3. Delete Employee data\n4.View All Employee data\n5.View Employee data with selete ID");
+            Console.WriteLine("\n1. To Create New Employee Data\n2. To Update Employee Data\n3. Delete Employee data\n4. View All Employee data\n5. View Employee data with selete ID");
             Console.WriteLine("\n******************************");
 
             Console.Write("\nEnter the Number Corresponding to the function you Want to execute:");

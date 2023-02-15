@@ -25,41 +25,41 @@ namespace EmpSystem
         {
             Console.Write("\nEnter The Number of Employee Details You Want to Enter: ");
             int Count = int.Parse(Console.ReadLine());
-            Employee_System employee = new Employee_System();
+            Employee_System employees = new Employee_System();
 
             int i = 0;
             while (i < Count)
             {
 
                 Console.Write("\nEnter the Employee_ID: ");
-                employee.employee_Id = int.Parse(Console.ReadLine());
+                employees.employee_Id = int.Parse(Console.ReadLine());
 
                 Console.Write("\nEnter Employee_Name: ");
-                employee.employee_Name = Console.ReadLine();
+                employees.employee_Name = Console.ReadLine();
 
                 Console.Write("\nEnter Employee DateOfBirth: ");
-                employee.employee_DOB = DateTime.Parse(Console.ReadLine());
+                employees.employee_DOB = DateTime.Parse(Console.ReadLine());
 
                 Console.Write("\nEnter Employee_Salary: ");
-                employee.employee_Salary = double.Parse(Console.ReadLine());
+                employees.employee_Salary = double.Parse(Console.ReadLine());
 
                 Console.Write("\nEnter Employee_Active Status: ");
                 string user_Input = Console.ReadLine();
                 if (user_Input != null && user_Input.ToUpper() == "Y")
                 {
-                    employee.employee_Active_Status = true;
+                    employees.employee_Active_Status = true;
                 }
                 else
                 {
-                    employee.employee_Active_Status = false;
+                    employees.employee_Active_Status = false;
                 }
-                Console.WriteLine("\nYou Employee data Has been Successfully Created");
+                Console.WriteLine("\nYour Employee data Has been Successfully Created");
 
                 i++;
             }
 
 
-            return employee;
+            return employees;
 
         }
 
@@ -96,22 +96,28 @@ namespace EmpSystem
         {
             bool isDataupdated = false;
             Employee_System employee = new Employee_System();
-            Console.Write("\nEnter the Employee_ID Your Want to Update: ");
-            int Employee_Id = int.Parse(Console.ReadLine()); 
-            foreach (Employee_System emp in employeeList) 
+            Console.Write("\nEnter the Employee_ID Your Want to View: ");
+            //int Employee_Id = int.Parse(Console.ReadLine());
+            int Employee_Id = 0;
+            if (int.TryParse(Console.ReadLine(), out Employee_Id))
             {
-                if (emp.employee_Id == Employee_Id) 
-                {
-                    Console.WriteLine($"Employee ID :{emp.employee_Id}");
-                    Console.WriteLine($"Employee Name:{emp.employee_Name}");
-                    Console.WriteLine($"Employee DOB:{emp.employee_DOB}");
-                    Console.WriteLine($"Employee Salary:{emp.employee_Salary}");
-                    Console.WriteLine($"Employee Active-Status:{emp.employee_Active_Status}");
-                    isDataupdated = true;
-                }
-                break;
 
+                foreach (Employee_System emp in employeeList)
+                {
+                    if (emp.employee_Id == Employee_Id)
+                    {
+                        Console.WriteLine($"Employee ID :{emp.employee_Id}");
+                        Console.WriteLine($"Employee Name:{emp.employee_Name}");
+                        Console.WriteLine($"Employee DOB:{emp.employee_DOB}");
+                        Console.WriteLine($"Employee Salary:{emp.employee_Salary}");
+                        Console.WriteLine($"Employee Active-Status:{emp.employee_Active_Status}");
+                        isDataupdated = true;
+                    }
+                    break;
+
+                }
             }
+           
             if (isDataupdated)
             {
 
@@ -127,7 +133,7 @@ namespace EmpSystem
         {
             bool isDataDeleted = false;
             Employee_System employee = new Employee_System();
-            Console.Write("\nEnter the Employee_ID Your Want to Delete: ");
+            Console.Write("\nEnter the Employee_ID You Want to Delete: ");
             int Employee_Id = int.Parse(Console.ReadLine());
 
             foreach(Employee_System emp in employeeList) 
@@ -151,14 +157,21 @@ namespace EmpSystem
 
         public void ViewAll_Employee(ref ArrayList employeeList) 
         {
-            foreach (Employee_System emp in employeeList) 
+            if (employeeList.Count > 0)
             {
-                Console.WriteLine($"Employee ID :{emp.employee_Id}");
-                Console.WriteLine($"Employee Name:{emp.employee_Name}");
-                Console.WriteLine($"Employee DOB:{emp.employee_DOB}");
-                Console.WriteLine($"Employee Salary:{emp.employee_Salary}");
-                Console.WriteLine($"Employee Active-Status:{emp.employee_Active_Status}");
-                Console.WriteLine("\n");
+                foreach (Employee_System emp in employeeList)
+                {
+                    Console.WriteLine($"Employee ID :{emp.employee_Id}");
+                    Console.WriteLine($"Employee Name:{emp.employee_Name}");
+                    Console.WriteLine($"Employee DOB:{emp.employee_DOB}");
+                    Console.WriteLine($"Employee Salary:{emp.employee_Salary}");
+                    Console.WriteLine($"Employee Active-Status:{emp.employee_Active_Status}");
+                    Console.WriteLine("\n");
+                }
+            }
+            else 
+            {
+                Console.WriteLine("Employee's List is Empty");
             }
         }
 
